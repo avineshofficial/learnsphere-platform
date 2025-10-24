@@ -1,0 +1,57 @@
+# =========================================================================
+# GENERAL - OS / IDE / LOG FILES
+# =========================================================================
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# IDE / Editor specific files
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.swp
+
+
+# =========================================================================
+# NODE / SERVER-SIDE
+# =========================================================================
+
+# Dependency directories for BOTH client and server.
+# This single rule will ignore any folder named 'node_modules' anywhere in the project.
+**/node_modules
+
+# Production build folder (if you create one on the server)
+server/dist
+
+# Environment variables file for the server (CRITICAL FOR SECURITY)
+# This specifically targets the .env file inside the 'server' directory.
+server/.env
+
+
+# =========================================================================
+# REACT / CLIENT-SIDE
+# =========================================================================
+
+# Create React App build output
+client/build
+
+# Client-side environment variables
+# These files are meant to be local and should not be in version control.
+client/.env.local
+client/.env.development.local
+client/.env.test.local
+client/.env.production.local
