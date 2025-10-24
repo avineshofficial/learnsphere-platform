@@ -181,7 +181,7 @@ function CourseDetailPage() {
                     <h2>Enroll in this course to access the lessons.</h2>
                 </div>
             )}
-            <Reviews course={course} courseId={courseId} />
+            <Reviews course={course} courseId={courseId} isEnrolled={isEnrolled} />
         </div>
     );
 }
