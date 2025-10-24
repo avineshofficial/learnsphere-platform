@@ -3,11 +3,12 @@ import { useParams, useNavigate } from 'react-router-dom';
 import api from '../services/api';
 import { useAuth } from '../context/AuthContext';
 import toast from 'react-hot-toast';
-import './CourseDetailPage.css';
 import ProgressBar from '../components/ProgressBar';
 import Reviews from '../components/Reviews';
-import { generateCertificate } from '../utils/generateCertificate';
 import Spinner from '../components/Spinner';
+import { generateCertificate } from '../utils/generateCertificate';
+import { getYouTubeEmbedUrl } from '../utils/videoHelper';
+import './CourseDetailPage.css';
 
 function CourseDetailPage() {
     const { id: courseId } = useParams(); 
@@ -85,8 +86,8 @@ function CourseDetailPage() {
     if (loading) return <Spinner />;
     if (!course) return <div>Course not found.</div>;
 
-    // THIS IS THE FIX: Call the function and store the result in a variable
     const progress = calculateProgress();
+    const embedUrl = activeLesson ? getYouTubeEmbedUrl(activeLesson.videoUrl) : null;
 
     return (
         <div className="course-detail-page">
@@ -134,9 +135,25 @@ function CourseDetailPage() {
                             {activeLesson ? (
                                 <>
                                     <h2>{activeLesson.title}</h2>
-                                    <div className="video-placeholder">
-                                        <p>Video content for "{activeLesson.title}" would be here.</p>
+                                    
+                                    {/* --- THIS IS THE CORRECTED VIDEO PLAYER SECTION --- */}
+                                    <div className="video-player-wrapper">
+                                        {embedUrl ? (
+                                            <iframe
+                                                src={embedUrl}
+                                                title={activeLesson.title}
+                                                frameBorder="0"
+                                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                                allowFullScreen
+                                            ></iframe>
+                                        ) : (
+                                            <div className="video-placeholder">
+                                                <p>No video available for this lesson.</p>
+                                            </div>
+                                        )}
                                     </div>
+                                    {/* --- END OF VIDEO PLAYER SECTION --- */}
+
                                     <button 
                                         onClick={handleMarkAsComplete}
                                         disabled={isLessonCompleted(activeLesson._id)}
