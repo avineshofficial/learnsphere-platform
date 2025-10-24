@@ -1,0 +1,12 @@
+.rating {
+    color: #FFC107; /* A nice gold color for stars */
+    display: flex;
+    align-items: center;
+    gap: 0.2rem;
+}
+
+.rating-text {
+    font-size: 0.9rem;
+    color: #6B7280; /* A neutral gray for the text */
+    margin-left: 0.5rem;
+}

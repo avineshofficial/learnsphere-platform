@@ -1,0 +1,90 @@
+.navbar {
+  background: #fff;
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2rem;
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.navbar-container {
+  display: flex;
+  justify-content: space-between; /* Pushes logo left and menu right */
+  align-items: center; /* Vertically aligns logo and menu */
+  height: 80px;
+  width: 100%;
+  max-width: 1200px;
+  padding: 0 24px;
+}
+
+.navbar-logo {
+  color: var(--primary-color);
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.nav-menu {
+  display: flex;
+  align-items: center; /* Vertically aligns all menu items */
+  list-style: none;
+  text-align: center;
+  gap: 1rem; /* NEW: Adds space between menu items */
+}
+
+.nav-item {
+  display: flex; /* Helps align the link inside */
+  align-items: center;
+  height: 80px;
+}
+
+.nav-links {
+  color: var(--text-color);
+  text-decoration: none;
+  padding: 0 1rem;
+  height: 100%;
+  display: flex; /* Ensures vertical alignment */
+  align-items: center;
+  transition: color 0.3s ease;
+}
+
+.nav-links:hover {
+  color: var(--primary-color);
+}
+
+.nav-links-btn {
+  display: inline-flex; /* Use inline-flex for better alignment */
+  align-items: center;
+  justify-content: center;
+  padding: 8px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  font-weight: 500;
+  border: 1px solid transparent; /* Base border */
+}
+
+.login-btn {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.login-btn:hover {
+  background-color: #4338CA;
+}
+
+.signup-btn {
+  background-color: transparent;
+  color: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+.signup-btn:hover {
+  background: #EEF2FF; /* A very light purple for hover */
+  color: #4338CA;
+}

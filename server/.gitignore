@@ -1,0 +1,12 @@
+# Dependency directory
+node_modules/
+
+# Environment variables file (CRITICAL FOR SECURITY)
+.env
+
+# Log files
+*.log
+npm-debug.log*
+
+# Production build folder (if any)
+dist/

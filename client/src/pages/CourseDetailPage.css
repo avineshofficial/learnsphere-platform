@@ -1,0 +1,139 @@
+.course-detail-page {
+    max-width: 1200px;
+    margin: auto;
+    padding: 2rem;
+}
+
+.course-header {
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.course-content-area {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 2rem;
+}
+
+.lesson-list {
+    background-color: #fff;
+    padding: 1.5rem;
+    border-radius: 8px;
+}
+
+.lesson-list ul {
+    list-style: none;
+    padding: 0;
+}
+
+.lesson-list li {
+    padding: 0.75rem;
+    border-bottom: 1px solid var(--border-color);
+    cursor: pointer;
+}
+
+.lesson-list li:hover {
+    background-color: #F9FAFB;
+}
+
+.course-main-content {
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+}
+.btn-enroll, .btn-enrolled {
+    margin-top: 1rem;
+    padding: 0.8rem 2rem;
+    font-size: 1.1rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.btn-enroll {
+    background-color: var(--primary-color);
+    color: white;
+}
+.btn-enrolled {
+    background-color: var(--secondary-color);
+    color: white;
+    cursor: not-allowed;
+}
+.lesson-item {
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid var(--border-color);
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+.lesson-item:hover {
+    background-color: #F9FAFB;
+}
+.lesson-item.active {
+    background-color: #EEF2FF;
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
+.video-placeholder {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background-color: #E5E7EB;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+    color: #6B7280;
+    margin: 1rem 0;
+}
+
+.btn-mark-complete {
+    display: block;
+    width: 100%;
+    margin-top: 1rem;
+    padding: 0.8rem 2rem;
+    font-size: 1.1rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: var(--secondary-color);
+    color: white;
+}
+.btn-mark-complete:disabled {
+    background-color: #D1D5DB;
+    cursor: not-allowed;
+}
+.enroll-prompt {
+    text-align: center;
+    padding: 4rem;
+    background-color: #fff;
+    border-radius: 8px;
+}
+.progress-section {
+    background-color: #fff;
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+}
+.btn-certificate {
+    background-color: #FFC107; /* Gold color */
+    color: #1F2937;
+    margin-top: 1rem;
+    padding: 0.8rem 2rem;
+    font-size: 1.1rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+.btn-certificate:hover {
+    background-color: #FFB300;
+}
