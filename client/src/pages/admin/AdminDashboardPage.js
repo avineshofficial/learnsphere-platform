@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import api from '../../services/api';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom'; // No useNavigate needed here
 import toast from 'react-hot-toast';
 import Spinner from '../../components/Spinner';
-import './AdminDashboardPage.css'; // <-- Critical CSS import
+import './AdminDashboardPage.css';
 
 function AdminDashboardPage() {
     const [courses, setCourses] = useState([]);
@@ -14,8 +14,11 @@ function AdminDashboardPage() {
             try {
                 const { data } = await api.get('/courses');
                 setCourses(data);
-            } catch (error) { toast.error('Could not fetch courses.'); }
-            finally { setLoading(false); }
+            } catch (error) {
+                toast.error('Could not fetch courses.');
+            } finally {
+                setLoading(false);
+            }
         };
         fetchCourses();
     }, []);
@@ -33,20 +36,36 @@ function AdminDashboardPage() {
             }
         }
     };
+    
+    // The automatic createCourseHandler function has been removed.
 
     if (loading) return <Spinner />;
 
     return (
         <div className="admin-dashboard">
             <h1>Admin Dashboard - Manage Courses</h1>
-            <Link to="/admin/course/create" className="btn-create">Create New Course</Link>
+            
+            {/* THIS IS THE FIX: Reverted back to a simple Link */}
+            <Link to="/admin/course/create" className="btn-create">
+                Create New Course
+            </Link>
+
             {courses.length > 0 ? (
-                <table>
-                    <thead><tr><th>ID</th><th>Title</th><th>Category</th><th>Actions</th></tr></thead>
+                 <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Title</th>
+                            <th>Category</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
                     <tbody>
                         {courses.map(course => (
                             <tr key={course._id}>
-                                <td>{course._id}</td><td>{course.title}</td><td>{course.category}</td>
+                                <td>{course._id}</td>
+                                <td>{course.title}</td>
+                                <td>{course.category}</td>
                                 <td>
                                     <Link to={`/admin/course/${course._id}/edit`} className="btn-edit">Edit</Link>
                                     <button onClick={() => handleDelete(course._id)} className="btn-delete">Delete</button>

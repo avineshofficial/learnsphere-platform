@@ -56,15 +56,33 @@ exports.createCourseReview = async (req, res) => {
     } catch (error) { res.status(500).json({ message: 'Server Error' }); }
 };
 
-// --- ADMIN ACCESS (PROTECTED + ADMIN) ---
 exports.createCourse = async (req, res) => {
+    // THIS IS THE FIX: We now read data from the request body (req.body)
+    const { title, description, category, thumbnail } = req.body;
+
+    // Basic validation to ensure a title is provided
+    if (!title) {
+        return res.status(400).json({ message: 'Course title is required' });
+    }
+
     try {
-        const { title, description, category, thumbnail } = req.body;
-        const course = new Course({ title, description, category, thumbnail, user: req.user._id });
+        const course = new Course({
+            title,
+            description: description || 'No description provided.',
+            category: category || 'Uncategorized',
+            thumbnail: thumbnail || 'https://i.imgur.com/Gh3fKq2.png', // Default placeholder
+            user: req.user._id,
+        });
+
         const createdCourse = await course.save();
         res.status(201).json(createdCourse);
-    } catch (error) { res.status(400).json({ message: 'Invalid course data' }); }
+    } catch (error) {
+        // This will catch errors like a duplicate title
+        console.error("Error creating course:", error);
+        res.status(400).json({ message: 'Error creating course. Title may already exist.' });
+    }
 };
+
 
 exports.updateCourse = async (req, res) => {
     const { title, description, category, thumbnail } = req.body;

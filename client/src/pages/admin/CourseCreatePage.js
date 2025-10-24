@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import api from '../../services/api';
 import toast from 'react-hot-toast';
-import '../AuthForm.css';
+import '../AuthForm.css'; // Reuse styles from auth forms
 
 function CourseCreatePage() {
     const [title, setTitle] = useState('');
@@ -16,12 +16,13 @@ function CourseCreatePage() {
         try {
             const token = localStorage.getItem('token');
             const config = { headers: { Authorization: `Bearer ${token}` } };
+            // Send the form data to the back-end
             await api.post('/courses', { title, description, category, thumbnail }, config);
             toast.success('Course created successfully!');
-            // This navigate call will now work because the route is defined correctly in App.js
-            navigate('/admin/dashboard'); 
+            // Redirect back to the dashboard after successful creation
+            navigate('/admin/dashboard');
         } catch (error) {
-            toast.error('Failed to create course.');
+            toast.error(error.response?.data?.message || 'Failed to create course.');
         }
     };
 

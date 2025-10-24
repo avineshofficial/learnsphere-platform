@@ -20,6 +20,7 @@ const CourseSchema = new Schema({
     description: { type: String, required: true },
     thumbnail: { type: String, default: 'default.jpg' },
     category: { type: String, required: true },
+    description: { type: Schema.Types.Mixed, required: true },
     lessons: [LessonSchema],
     reviews: [reviewSchema], // ADD THIS
     rating: { // ADD THIS for average rating

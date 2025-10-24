@@ -93,7 +93,15 @@ function CourseDetailPage() {
         <div className="course-detail-page">
             <div className="course-header">
                 <h1>{course.title}</h1>
-                <p>{course.description}</p>
+                <div className="course-description-full">
+                {Array.isArray(course.description) ? (
+                    course.description.map((paragraph, index) => (
+                        <p key={index}>{paragraph}</p>
+                    ))
+                ) : (
+                    <p>{course.description}</p>
+                )}
+            </div>
                  {user && (
                     isEnrolled ? (
                         <button className="btn-enrolled" disabled>Already Enrolled</button>
