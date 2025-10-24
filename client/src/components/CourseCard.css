@@ -74,9 +74,9 @@
     box-shadow: 0 4px 6px rgba(0,0,0,0.05);
     overflow: hidden;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    display: flex; /* <-- Use Flexbox */
-    flex-direction: column; /* <-- Arrange items vertically */
-    height: 100%; /* <-- Make card take full height of grid cell */
+    display: flex;
+    flex-direction: column;
+    height: 100%;
 }
 
 .course-card:hover {
@@ -102,7 +102,7 @@
     padding: 1.5rem;
     display: flex;
     flex-direction: column;
-    flex-grow: 1; /* <-- Allow this section to grow and fill space */
+    flex-grow: 1;
 }
 
 .course-title {
@@ -114,23 +114,23 @@
     margin-bottom: 0.75rem;
 }
 
-/* --- THIS IS THE FIX FOR THE OVERFLOWING TEXT --- */
 .course-description {
     font-size: 0.9rem;
     color: #4B5563;
-    flex-grow: 1; /* <-- Allow description to push footer content down */
+    flex-grow: 1;
     margin-bottom: 1.5rem;
     
-    /* Truncate text to 3 lines */
+    /* --- THIS IS THE CORRECTED SECTION --- */
     overflow: hidden;
     display: -webkit-box;
-    -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3; /* For older WebKit browsers */
+    line-clamp: 3;          /* The standard property (FIX) */
     text-overflow: ellipsis;
+    /* --- END OF CORRECTION --- */
 }
-/* --- END OF FIX --- */
 
 .course-card-progress {
-    margin-top: auto; /* <-- This now correctly pushes the bar to the bottom */
+    margin-top: auto;
     padding-top: 1rem;
 }
