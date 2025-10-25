@@ -1,4 +1,3 @@
-/* General App Styles */
 :root {
   --primary-color: #4F46E5;
   --secondary-color: #10B981;
@@ -10,7 +9,7 @@
 
 body {
   margin: 0;
-  font-family: 'Inter', sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   background-color: var(--bg-color);
   color: var(--text-color);
 }
@@ -19,4 +18,11 @@ body {
   max-width: 1200px;
   margin: 2rem auto;
   padding: 0 1rem;
+  min-height: calc(100vh - 80px - 250px); /* Full height minus navbar and footer */
+}
+
+.loading {
+    text-align: center;
+    padding: 3rem;
+    font-size: 1.5rem;
 }

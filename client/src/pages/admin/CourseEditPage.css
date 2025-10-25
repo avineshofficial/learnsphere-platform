@@ -1,8 +1,9 @@
 .course-edit-page {
+    /* --- DESKTOP STYLES --- */
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 2rem;
-    padding: 2rem;
+    padding: 2rem; /* Padding for larger screens */
     align-items: start;
 }
 
@@ -10,8 +11,9 @@
     width: 100%;
 }
 
-.auth-form {
-    margin: 0; /* Override margin from shared styles */
+/* Reusing the auth-form style for consistency */
+.edit-section .auth-form {
+    margin: 0;
 }
 
 .lesson-management-list {
@@ -28,6 +30,7 @@
     border: 1px solid var(--border-color);
     border-radius: 5px;
     margin-bottom: 0.5rem;
+    word-break: break-word; /* Prevents long lesson titles from overflowing */
 }
 
 .btn-remove-lesson {
@@ -37,10 +40,23 @@
     padding: 0.4rem 0.8rem;
     border-radius: 5px;
     cursor: pointer;
+    white-space: nowrap; /* Prevents "Remove" text from wrapping */
 }
 
-@media (max-width: 900px) {
+/* --- THIS IS THE FIX FOR MOBILE VIEW --- */
+@media screen and (max-width: 960px) {
     .course-edit-page {
+        /* Switch from a two-column grid to a single column */
         grid-template-columns: 1fr;
+        
+        /* 
+         *  THE KEY FIX: 
+         *  Ensure there is padding on all sides for mobile. 
+         *  This creates the "breathing room" between the content and the screen edges.
+         */
+        padding: 1rem;
+        
+        /* Reduce the gap between sections */
+        gap: 1.5rem;
     }
 }

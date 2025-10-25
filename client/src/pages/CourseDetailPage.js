@@ -94,29 +94,32 @@ function CourseDetailPage() {
             <div className="course-header">
                 <h1>{course.title}</h1>
                 <div className="course-description-full">
-                {Array.isArray(course.description) ? (
-                    course.description.map((paragraph, index) => (
-                        <p key={index}>{paragraph}</p>
-                    ))
-                ) : (
-                    <p>{course.description}</p>
-                )}
-            </div>
-                 {user && (
-                    isEnrolled ? (
-                        <button className="btn-enrolled" disabled>Already Enrolled</button>
+                    {Array.isArray(course.description) ? (
+                        course.description.map((paragraph, index) => <p key={index}>{paragraph}</p>)
                     ) : (
-                        <button onClick={handleEnroll} className="btn-enroll">Enroll Now</button>
-                    )
-                )}
-                {isEnrolled && progress === 100 && (
-                    <button 
-                        className="btn-certificate"
-                        onClick={() => generateCertificate(user.name, course.title)}
-                    >
-                        Get Certificate
-                    </button>
-                )}
+                        <p>{course.description}</p>
+                    )}
+                </div>
+
+                <div className="course-header-buttons">
+                    {user && (
+                        isEnrolled ? (
+                            <button className="btn-enrolled" disabled>Already Enrolled</button>
+                        ) : (
+                            <button onClick={handleEnroll} className="btn-enroll">Enroll Now</button>
+                        )
+                    )}
+
+                    {isEnrolled && progress === 100 && (
+                        <button 
+                            className="btn-certificate"
+                            onClick={() => generateCertificate(user.name, course.title)}
+                        >
+                            Get Certificate
+                        </button>
+                    )}
+                </div> {/* --- THIS IS THE MISSING CLOSING TAG THAT FIXES THE ERROR --- */}
+                
             </div>
             {isEnrolled ? (
                 <>

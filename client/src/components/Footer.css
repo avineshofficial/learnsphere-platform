@@ -43,3 +43,10 @@
     padding-top: 1rem;
     font-size: 0.9rem;
 }
+
+@media screen and (max-width: 768px) {
+    .footer-container {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+}

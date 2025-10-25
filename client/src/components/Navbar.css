@@ -1,90 +1,151 @@
+/* --- Base Desktop Styles --- */
 .navbar {
-  background: #fff;
-  height: 80px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 1.2rem;
-  position: sticky;
-  top: 0;
-  z-index: 999;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    background: #fff;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 .navbar-container {
-  display: flex;
-  justify-content: space-between; /* Pushes logo left and menu right */
-  align-items: center; /* Vertically aligns logo and menu */
-  height: 80px;
-  width: 100%;
-  max-width: 1200px;
-  padding: 0 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%; /* Use 100% height to ensure vertical alignment works */
+    width: 100%;
+    max-width: 1200px;
+    padding: 0 24px;
+    position: relative; /* Needed for positioning the mobile menu icon */
 }
 
 .navbar-logo {
-  color: var(--primary-color);
-  cursor: pointer;
-  text-decoration: none;
-  font-size: 2rem;
-  font-weight: bold;
+    color: var(--primary-color);
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 2rem;
+    font-weight: bold;
 }
 
 .nav-menu {
-  display: flex;
-  align-items: center; /* Vertically aligns all menu items */
-  list-style: none;
-  text-align: center;
-  gap: 1rem; /* NEW: Adds space between menu items */
+    display: flex;
+    align-items: center;
+    list-style: none;
+    text-align: center;
+    gap: 0.5rem;
 }
 
-.nav-item {
-  display: flex; /* Helps align the link inside */
-  align-items: center;
-  height: 80px;
+.nav-item, .nav-item-desktop {
+    display: flex;
+    align-items: center;
+    height: 80px;
 }
 
 .nav-links {
-  color: var(--text-color);
-  text-decoration: none;
-  padding: 0 1rem;
-  height: 100%;
-  display: flex; /* Ensures vertical alignment */
-  align-items: center;
-  transition: color 0.3s ease;
+    color: var(--text-color);
+    text-decoration: none;
+    padding: 0 1rem;
+    transition: color 0.3s ease;
 }
 
 .nav-links:hover {
-  color: var(--primary-color);
+    color: var(--primary-color);
 }
 
 .nav-links-btn {
-  display: inline-flex; /* Use inline-flex for better alignment */
-  align-items: center;
-  justify-content: center;
-  padding: 8px 20px;
-  border-radius: 5px;
-  text-decoration: none;
-  transition: all 0.3s ease;
-  font-weight: 500;
-  border: 1px solid transparent; /* Base border */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: 500;
+    border: 1px solid transparent;
+    cursor: pointer;
+    white-space: nowrap;
 }
 
-.login-btn {
-  background-color: var(--primary-color);
-  color: white;
-}
+.login-btn { background-color: var(--primary-color); color: white; }
+.signup-btn { background: none; color: var(--primary-color); border: 1px solid var(--primary-color); }
+.menu-icon { display: none; }
+.nav-item-mobile { display: none; }
 
-.login-btn:hover {
-  background-color: #4338CA;
-}
+/* --- MOBILE STYLES (Breakpoint: 960px) --- */
+@media screen and (max-width: 960px) {
+    .nav-menu {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100vh;
+        position: fixed;
+        top: 0;
+        left: -100%;
+        background: #fff;
+        transition: all 0.5s ease;
+        padding: 2rem 0;
+    }
 
-.signup-btn {
-  background-color: transparent;
-  color: var(--primary-color);
-  border-color: var(--primary-color);
-}
+    .nav-menu.active {
+        left: 0;
+    }
 
-.signup-btn:hover {
-  background: #EEF2FF; /* A very light purple for hover */
-  color: #4338CA;
+    .nav-item, .nav-item-mobile {
+        width: 100%;
+        height: auto;
+    }
+    
+    .nav-item-desktop {
+        display: none;
+    }
+    
+    .nav-item-mobile {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        padding: 1rem 0;
+    }
+    
+    .nav-links {
+        text-align: center;
+        padding: 1.5rem;
+        width: 100%;
+        display: block;
+        font-size: 1.5rem;
+    }
+    
+    .nav-links-btn {
+        width: 80%;
+        max-width: 300px;
+        font-size: 1.2rem;
+        padding: 12px 20px;
+    }
+    
+    /* --- THIS IS THE FIX for the icon alignment --- */
+    .menu-icon {
+        display: block;
+        font-size: 1.8rem;
+        cursor: pointer;
+        
+        /* Remove absolute positioning for better flow */
+    }
+
+    /* --- THIS IS THE FIX for the main container alignment --- */
+    .navbar-container {
+        /* On mobile, the desktop menu is hidden, so we just need
+           to space out the logo and the hamburger icon */
+        justify-content: space-between;
+        align-items: center; /* Ensures vertical centering */
+    }
+    
+    /* Hide the desktop menu items completely on mobile */
+    .nav-menu:not(.active) .nav-item,
+    .nav-menu:not(.active) .nav-item-desktop {
+        display: none;
+    }
 }
