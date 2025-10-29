@@ -7,6 +7,7 @@ const cors = require('cors');
 const authRoutes = require('./routes/authRoutes');
 const courseRoutes = require('./routes/courseRoutes');
 const userRoutes = require('./routes/userRoutes');
+const chatbotRoutes = require('./routes/chatbotRoutes');
 
 // Initialize App
 const app = express();
@@ -35,6 +36,7 @@ app.use(express.json());
 app.use('/api/auth', authRoutes);
 app.use('/api/courses', courseRoutes);
 app.use('/api/users', userRoutes);
+app.use('/api/chatbot', chatbotRoutes);
 
 // Root API Route for Testing
 app.get('/api', (req, res) => {
@@ -42,13 +44,13 @@ app.get('/api', (req, res) => {
 });
 
 // Connect to MongoDB and Start Server
-mongoose.connect(process.env.MONGO_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-})
+mongoose.connect(process.env.MONGO_URI)
 .then(() => {
     console.log("Successfully connected to MongoDB Atlas");
-    app.listen(PORT, () => console.log(`Server is running on port ${PORT}`));
+    // 8. START THE SERVER
+    app.listen(PORT, () => {
+        console.log(`Server is running on port ${PORT}`);
+    });
 })
 .catch(err => {
     console.error("Database connection error:", err);
